@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-5">
+            <h4>User</h4>
+            <div>
+            <input type="text" [(ngModel)]="text" placeholder="search"/>
+            </div>
+            <table class="table table-striped border">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Pincode</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of myData  | filterData:text">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td [ngClass]="{'text-success':item.id<='5','text-info':item.id>'5'}">{{item.id<=5 ? 'Pune':'Mumbai'}}</td>
+                    <td>{{item.address.zipcode}}</td> 
+                    <td><button class="btn btn-primary btn-sm" (click)="onClick($event)" [value]="item.id" >Details</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+        </div>
+        <div class="col-2 mt-5" >
+            <div [ngSwitch]="did" *ngFor="let item of myData ; let i=index">
+                <table *ngSwitchCase="item.id" class="table table-striped border">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Pincode</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.id<=5 ? 'Pune':'Mumbai'}}</td>
+                        <td>{{item.address.zipcode}}</td> 
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+
+
+
+

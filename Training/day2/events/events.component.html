@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-4">
+            <h5>Events in Angular</h5>
+            <h6>dblClick</h6>
+            <button class="btn btn-success" (dblclick)="showMsg($event)" value="Good Morining">click</button>
+            <div>
+                {{msg}}
+            </div><br>
+            <hr>
+            <div>
+                <h6> On key up </h6>
+                <input (keyup)="keyUp($event)" /> you wrote: {{msg1}}
+                <p></p>
+
+            </div>
+            <hr>
+            <h6> On Blur </h6>
+            <div>
+                <input type="text" (blur)="blurFun()" placeholder="enter name" /> on blur: {{saveText}}
+                <!-- <button class="btn btn-success btn-sm" (blur)="blurFun()">Submit</button> -->
+            </div>
+            <div>
+                <hr>
+                <h6> On mouse up </h6>
+                <button class="btn btn-secondary btn-sm" (mouseup)="mouseUp()"> Count</button> count : {{count}}
+            </div>
+        </div>
+        <div class="col-3"></div>
+            
+        <div class="col-4 mt-5">
+            <div class="container">
+                <form [formGroup]="formData" type="submit">
+                    {{myDate | date:'dd-MM-yy'}}
+                    <div class="form-group">
+                        <label>First Name* :</label>
+                        <input type="text" class="form-control" formControlName="firstName"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name* :</label>
+                        <input type="text" class="form-control" formControlName="lastName"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile No :</label>
+                        <input type="text" class="form-control" formControlName="mobileNo"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Qualification* : </label>
+                        <select class="form-control" formControlName="education" (change)="saveQuali($event)" >
+                            <option>Select Qualification</option>
+                            <option value="{{e}}" *ngFor="let e of qualiData">{{e}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group mt-2">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger ms-2" type="reset">Clear</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

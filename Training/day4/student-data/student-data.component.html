@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-striped border p-3 mt-5">
+                <thead>
+                    <tr>
+                        <!-- <th>Sr No</th> -->
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                        <th>Qualification</th>
+                        <th>City</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of sData; let i= index">
+                        <!-- <td>{{data.id}}</td> -->
+                        <td>{{data.fname}}</td>
+                        <td>{{data.lname}}</td>
+                        <td>{{data.gender}}</td>
+                        <td>{{data.qualification}}</td>
+                        <td>{{data.city}}</td>
+                        <td><button class="btn btn-secondary btn-sm" (click)="edit(data)">Edit</button>
+                            <button class="btn btn-secondary ml-2 btn-sm " (click)="onDelete(data)">Delete</button>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- <div class="col-2"></div> -->
+        <div class="col-4 mt-5">
+            <form [formGroup]="studfrm" class="border p-4">
+                <div class="form-group">
+                    <label>ID :</label>
+                    <input type="text" placeholder="" formControlName="id"/>
+                </div>
+                <div class="form-group">
+                    <label>First Name :</label>
+                    <input type="text" placeholder="firstname" formControlName="fname"/>
+                </div>
+                <div class="form-group">
+                    <label>Middle Name :</label>
+                    <input type="text" placeholder="middlename" formControlName="mname"/>
+                </div>
+                <div class="form-group">
+                    <label>Last Name :</label>
+                    <input type="text" placeholder="lastname" formControlName="lname"/>
+                </div>
+                <div class="form-group">
+                    <label>Gender  :</label>
+                    
+                        <input type="radio" value="male" formControlName="gender"/>Male
+                        <input type="radio" value="female" formControlName="gender"/>Female
+                </div>
+                <div class="form-group">
+                    <label>Qualification : </label>
+                    <input type="checkbox"value="BE" formControlName="qualification" />BE
+                    <input type="checkbox"value="ME" formControlName="qualification" />ME
+
+                </div>
+                <div class="form-group">
+                    <label>City : </label>
+                    <select formControlName="city" formControlName="city" (change)="saveQuali($event)">
+                        <option disabled selected>Select City</option>
+                        <option value={{c}} *ngFor="let c of cityData">{{c}}</option>
+                    </select>
+                </div>
+                <div class="form-group mt-3">
+                        <button class="btn btn-success" type="submit" (click)="submit()">Submit</button>
+                        <button class="btn btn-secondary ms-2" type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

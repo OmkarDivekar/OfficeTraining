@@ -1,0 +1,60 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-4">
+            <h5 style="text-align: center;">Register Form</h5>
+
+            <form class="border p-4" [formGroup]="userfrm" >
+                <div class="form-group">
+                    <label>User Name* :</label>
+                    <input type="text" class="form-control" formControlName="uname" />
+                </div>
+                <div class="form-group">
+                    <label>Email :</label>
+                    <input type="text" class="form-control" formControlName="email" />
+                </div>
+                <div class="form-group">
+                    <label>Mobile No :</label>
+                    <input type="text" class="form-control" formControlName="mobile" placeholder="+91" />
+                </div>
+                <div class="form-group">
+                    <label>DOB: </label>
+                    <input type="date" class="form-control" formControlName="dob" />
+                </div>
+                <div class="form-group mt-4" style="text-align: center;">
+                    <button class="btn btn-primary " type="submit" (click)="submit()">Save</button>
+                    <button class="btn btn-secondary  ms-2" type="reset">Clear</button>
+                </div>
+            </form>
+        </div>
+        <!-- <div class="col"></div> -->
+        <div class="col-8">
+            <h5 style="text-align: center;">User Details</h5>
+            <table class="table table-striped border p-2">
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>DOB</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of uData; let i = index">
+                        <td>{{data.id}}</td>
+                        <td>{{data.uname}}</td>
+                        <td>{{data.email}}</td>
+                        <td>{{data.mobile}}</td>
+                        <td>{{data.dob | date: 'longDate'}}</td>
+                        <td><button class="btn btn-secondary btn-sm" (click)="edit(data)">Edit</button>
+                            <button class="btn btn-secondary btn-sm ms-2">Delete</button></td>
+                        
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

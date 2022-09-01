@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-6">
+            <h3>Task-1</h3>
+            <table class="table table-striped border mt-5">
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                   </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of array let i = index">
+                        <td>{{data.id}}</td>
+                        <td><input type="text" value="{{data.name}}" #subValue></td>
+                        <td>{{data.gender}}</td>
+                        <td [ngClass]="{'text-success':data.status=='0','text-warning':data.status=='1','text-info':data.status=='2','text-danger':data.status=='3'}">{{data.status =='0'?"Active":data.status=='1'?"Pending":data.status=='2'?"Wating for approval":"Closed"}}</td>
+                        <td >
+                            <ng-container *ngIf="!data.flag else con">
+                                <button class="btn btn-primary btn-sm" (click)="onClick(i)">View</button>
+                                <button class="btn btn-success btn-sm" (click)="submitData(subValue,i)">Save</button>
+
+                            </ng-container>
+                                <ng-template #con> Viewed</ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4"> </div>
+        <div class="col-4">
+            <h3>Task-2</h3><br>
+            <div *ngFor="let item of product; let i =index">
+                <span ><button class="btn btn-info mt-2" (click)="clicked(i)"[disabled]="item.availble==0?true:false">{{item.name}}</button></span>
+            </div><br>
+           <div> {{msg}} </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h3>Task-3</h3><br>
+            <input type="text" #saveMe/>
+            <button class="btn btn-success btn-sm ms-2" (click)="onSave(saveMe)"> Save</button>
+
+            <div class="mt-2" *ngIf="inputData.length!=0">
+                <table class="table table-striped border">
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Data</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of inputData;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{item}}</td>
+                            <td>
+                                <button class="btn btn-success btn-sm">Edit</button>
+                                <button class="btn btn-success btn-sm ms-2">Save</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div><br><br><br><br>
+</div>
+
+
+

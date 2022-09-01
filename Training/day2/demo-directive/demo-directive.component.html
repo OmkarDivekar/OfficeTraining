@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-8">
+            <h3> Structural Directives :*ngIf </h3>
+            <ng-container *ngIf="flag=='online' else con">
+                    <p>Online</p>
+            </ng-container>
+            <ng-template #con><p>Offline</p></ng-template><hr>
+            <div>
+                <h3>Structural Directives :*ngFor</h3>
+                <p *ngFor="let item of cities">{{item}}</p><hr>
+                <div>
+                 City : <select (change)="saveData($event)">
+                        <option disabled selected>Select city</option>
+                        <option value="{{c}}" *ngFor="let c of cities">{{c}}</option>
+                       </select>
+                        You selected : {{msg}}
+                </div>
+
+            </div><hr>
+            <div>
+                <h3>Structural Directive : *ngSwitch</h3>
+                <button class="btn btn-warning ms-2" (click)="saveNum($event)" value="{{no}}" *ngFor="let no of nums">{{no}}</button><hr>
+                <div [ngSwitch]="show" *ngFor="let no of nums">
+                     <h6 *ngSwitchCase="no">You selected : {{no}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
